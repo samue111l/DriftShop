@@ -1,0 +1,24 @@
+<h1>Vista</h1>
+
+<ul>
+    {{#productos}}
+        <li>{{nombre}}</li>
+    {{/productos}}
+</ul>
+
+<form action="/tienda" method="get">
+    Acceda a nuestra tienda: 
+    <input type="hidden" name="task" value="tienda">
+    <input type="submit" value="Tienda">
+</form>
+<br>
+<form action="/taller" method="get">
+    Revise los servicios del taller: 
+    <input type="hidden" name="task" value="taller">
+    <input type="submit" value="Taller">
+</form>
+<form action="/listar" method="get">
+    Listar productos:
+    <input type="hidden" name="task" value="listar">
+    <input type="submit" value="Listar">
+</form>
