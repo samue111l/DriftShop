@@ -16,6 +16,32 @@ public class Controlador {
         this.modeloDB = modeloDB;
     }
 
+    @GetMapping("/registrarUsuario")
+    public String registrarUSuario(
+        @RequestParam("nombreRegistro") String nombreRegistro,
+        @RequestParam("contrasenaRegistro") String contrasenaRegistro,
+        @RequestParam("correoRegistro") String correoRegistro,
+        Model model){
+            Usuario nuevoUsuario = modeloDB.registrarUSuario(nombreRegistro, contrasenaRegistro, correoRegistro);
+            model.addAttribute("nuevoUsuario", nuevoUsuario);
+            return "index";
+    }
+
+    @GetMapping("/login")
+    public String login(
+        @RequestParam("nombreRegistro") String nombreRegistro,
+        @RequestParam("contrasenaRegistro") String contrasenaRegistro,
+        Model model){
+            Usuario usuario = modeloDB.validarInicioSesion(nombreRegistro, contrasenaRegistro);
+
+            if (usuario != null) {
+                model.addAttribute("usuario", usuario);
+                return "redirect:/tienda";
+            } else {
+                return "redirect:/";
+            }
+    }
+
     @GetMapping("/listar")
     public String mostrarVista(Model model) {
         List<Producto> productos = modeloDB.listarProductos();

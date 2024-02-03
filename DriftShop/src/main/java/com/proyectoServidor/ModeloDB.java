@@ -1,5 +1,6 @@
 package com.proyectoServidor;
 
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -41,4 +42,35 @@ public class ModeloDB {
 
         return lista;
     }
+
+    public Usuario registrarUSuario(String nombreRegistro, String contraseñaRegistro, String correoRegistro){
+        Usuario usuarioNuevo = new Usuario();
+        usuarioNuevo.setNombreUsuario(nombreRegistro);
+        usuarioNuevo.setContraseña(contraseñaRegistro);
+        usuarioNuevo.setCorreo(correoRegistro);
+        String sql = "INSERT INTO usuario (nombreUsuario, contraseña, correo) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, nombreRegistro, contraseñaRegistro, correoRegistro);
+        return usuarioNuevo;
+    }
+
+    public Usuario validarInicioSesion(String nombreUsuario, String contraseña) {
+        String sql = "SELECT * FROM usuario WHERE nombreUsuario = ? AND contraseña = ?";
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, nombreUsuario, contraseña);
+    
+        if (!rows.isEmpty()) {
+            Map<String, Object> row = rows.get(0);
+            return new Usuario(
+                (Integer) row.get("id"),
+                (String) row.get("nombreUsuario"),
+                (String) row.get("contraseña"),
+                (String) row.get("correo")
+            );
+        } else {
+            return null;
+        }
+    }
+    
+
+    
+
 }

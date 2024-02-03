@@ -27,3 +27,18 @@ h1{
     <input type="hidden" name="task" value="listar">
     <input type="submit" value="Listar">
 </form>
+
+<form action="/registrarUsuario" method="get">
+  <input type="text" name="nombreRegistro" placeholder="Nombre de Perfil">
+  <input type="text" name="contrasenaRegistro" placeholder="contrasena">
+  <input type="text" name="correoRegistro" placeholder="correo">
+  <input type="hidden" name="task" value="registrarUsuario">
+  <input type="submit" value="Enviar">
+</form>
+
+<form action="/login" method="get">
+  <input type="text" name="nombreRegistro" placeholder="Nombre de Perfil">
+  <input type="text" name="contrasenaRegistro" placeholder="contrasena">
+  <input type="hidden" name="task" value="login">
+  <input type="submit" value="Enviar">
+</form>
