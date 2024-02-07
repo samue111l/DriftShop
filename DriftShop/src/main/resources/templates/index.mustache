@@ -42,3 +42,23 @@ h1{
   <input type="hidden" name="task" value="login">
   <input type="submit" value="Enviar">
 </form>
+
+<div class="form-group" id="submenu_list"></div>
+
+<div id="dropDownList" type="text/template"> 
+    <select class="form-control" name="sub_menu" id="sub_menu">
+        {{#marcas}}
+            <option value="{{nombre}}">{{nombre}}</option>
+        {{/marcas}}         
+    </select>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var template = $("#dropDownList").html();
+        var subMenuList = Mustache.render(template, data);
+        $("#submenu_list").html(subMenuList);
+    });
+</script>
+
+

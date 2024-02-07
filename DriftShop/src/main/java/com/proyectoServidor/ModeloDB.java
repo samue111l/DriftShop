@@ -69,6 +69,27 @@ public class ModeloDB {
             return null;
         }
     }
+
+    public List<Marca> seleccionarMarca() {
+        ArrayList<Marca> lista = new ArrayList<>();
+
+        String sqlSentence = "SELECT DISTINCT * FROM marca";
+        System.out.println("Sentence: " + sqlSentence);  // verificación en consola
+
+        try {
+            List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlSentence);
+            for (Map<String, Object> row : rows) {
+                lista.add(new Marca(
+                        (Integer) row.get("Marcaid"),
+                        (String) row.get("Nombre")
+                ));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return lista;
+    }
     
 
     

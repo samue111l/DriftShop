@@ -51,11 +51,18 @@ public class Controlador {
 
     @GetMapping("/tienda")
     public String tienda(@RequestParam String name) {
-        return "redirect:/";
+        return "tienda.mustache";
     }
 
     @GetMapping("/taller")
     public String taller(@RequestParam String name) {
-        return "redirect:/";
+        return "taller.mustache";
+    }
+
+    @GetMapping("/dropMarca")
+    public String seleccionarMarca(Model model) {
+        List<Marca> marcas = modeloDB.seleccionarMarca();
+        model.addAttribute("marcas", marcas);
+        return "index";
     }
 }
