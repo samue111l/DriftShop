@@ -1,1 +1,11 @@
 <h1>Tienda</h1>
+<form action="/listar" method="get">
+    Listar productos:
+    <input type="hidden" name="task" value="listar">
+    <input type="submit" value="Listar">
+</form>
+<ul>
+    {{#productos}}
+        <li>id: {{id}}, marrca: {{marca}}, modelo: {{modelo}}, motor: {{motor}}, nombre: {{nombre}}, precio: {{precio}}</li>
+    {{/productos}}
+</ul>

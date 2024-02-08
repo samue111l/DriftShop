@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.google.gson.Gson;
+
 
 import java.util.List;
 
@@ -46,23 +49,25 @@ public class Controlador {
     public String mostrarVista(Model model) {
         List<Producto> productos = modeloDB.listarProductos();
         model.addAttribute("productos", productos);
-        return "index";
+        return "tienda";
     }
 
     @GetMapping("/tienda")
-    public String tienda(@RequestParam String name) {
-        return "tienda.mustache";
+    public String tienda() {
+        return "tienda";
     }
 
     @GetMapping("/taller")
-    public String taller(@RequestParam String name) {
-        return "taller.mustache";
+    public String taller() {
+        return "taller";
     }
 
-    @GetMapping("/dropMarca")
-    public String seleccionarMarca(Model model) {
-        List<Marca> marcas = modeloDB.seleccionarMarca();
-        model.addAttribute("marcas", marcas);
-        return "index";
-    }
+    @GetMapping("/marcas")
+public @ResponseBody String getMarcas() {
+    List<Marca> marcas = modeloDB.seleccionarMarca();
+    System.out.println(marcas);
+    Gson gson = new Gson();
+    return gson.toJson(marcas);
+}
+
 }

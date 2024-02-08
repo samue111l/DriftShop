@@ -22,11 +22,7 @@ h1{
     <input type="hidden" name="task" value="taller">
     <input type="submit" value="Taller">
 </form>
-<form action="/listar" method="get">
-    Listar productos:
-    <input type="hidden" name="task" value="listar">
-    <input type="submit" value="Listar">
-</form>
+
 
 <form action="/registrarUsuario" method="get">
   <input type="text" name="nombreRegistro" placeholder="Nombre de Perfil">
@@ -43,22 +39,26 @@ h1{
   <input type="submit" value="Enviar">
 </form>
 
-<div class="form-group" id="submenu_list"></div>
-
-<div id="dropDownList" type="text/template"> 
-    <select class="form-control" name="sub_menu" id="sub_menu">
-        {{#marcas}}
-            <option value="{{nombre}}">{{nombre}}</option>
-        {{/marcas}}         
-    </select>
-</div>
-
+<form>
+   <select id="marcas" name="marcas">
+      {{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}
+   </select>
+   <input type="submit" value="Submit">
+</form>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js"></script>
 <script>
     $(document).ready(function() {
-        var template = $("#dropDownList").html();
-        var subMenuList = Mustache.render(template, data);
-        $("#submenu_list").html(subMenuList);
+        $.getJSON("", function(data) {
+            var template = "{{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}";
+            var html = Mustache.render(template, {marcas: data});
+            console.log(html);
+            $("#marcas").html(html);
+        });
     });
 </script>
+
+
+
 
 
