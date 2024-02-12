@@ -6,6 +6,7 @@
 </form>
 <ul>
     {{#productos}}
-        <li>id: {{id}}, marrca: {{marca}}, modelo: {{modelo}}, motor: {{motor}}, nombre: {{nombre}}, precio: {{precio}}</li>
+        <li>{{marca}}, {{modelo}}, {{motor}}, nombre: {{nombre}}, precio: {{precio}}</li>
+        <li><img url(`{{urlImagen}}`)></li>
     {{/productos}}
 </ul>
