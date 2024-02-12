@@ -21,7 +21,7 @@ public class ModeloDB {
         ArrayList<Producto> lista = new ArrayList<>();
 
         String sqlSentence = "SELECT * FROM productos";
-        System.out.println("Sentence: " + sqlSentence);  // verificación en consola
+        System.out.println("Sentence: " + sqlSentence);
 
         try {
             List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlSentence);
