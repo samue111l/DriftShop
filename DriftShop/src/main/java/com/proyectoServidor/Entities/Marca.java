@@ -14,13 +14,13 @@ public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id", nullable = false)
-    String marcaid;
+    Integer marcaid;
 
     @Column(name="marca", nullable = false)
     String nombre;
 
     //Constructores
-    public Marca(String marcaid, String nombre) {
+    public Marca(Integer marcaid, String nombre) {
         this.marcaid = marcaid;
         this.nombre = nombre;
     }
@@ -31,10 +31,10 @@ public class Marca {
     }
 
     //Getters y Setters
-    public String getMarcaid() {
+    public Integer getMarcaid() {
         return marcaid;
     }
-    public void setMarcaid(String marcaid) {
+    public void setMarcaid(Integer marcaid) {
         this.marcaid = marcaid;
     }
     public String getNombre() {

@@ -51,7 +51,7 @@ public class ModeloDB {
     public List<Marca> seleccionarMarca() {
         ArrayList<Marca> lista = new ArrayList<>();
 
-        String sqlSentence = "SELECT \"id\", \"marca\" FROM marcas";
+        String sqlSentence = "SELECT id, marca FROM marcas";
         System.out.println("Sentence: " + sqlSentence);  // verificación en consola
 
         try {
@@ -59,7 +59,7 @@ public class ModeloDB {
             List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlSentence);
             for (Map<String, Object> row : rows) {
                 lista.add(new Marca(
-                        (String) row.get("id"),
+                        (Integer) row.get("id"),
                         (String) row.get("marca")
                 ));
             }
@@ -74,33 +74,5 @@ public class ModeloDB {
         System.out.println(lista);
         return lista;
     }
-    
-    
-
-    /*public List<Producto> listarProductos() {
-        ArrayList<Producto> lista = new ArrayList<>();
-
-        String sqlSentence = "SELECT * FROM productos";
-        System.out.println("Sentence: " + sqlSentence);
-
-        try {
-            List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlSentence);
-            for (Map<String, Object> row : rows) {
-                lista.add(new Producto(
-                        (Integer) row.get("id"),
-                        (String) row.get("marca"),
-                        (String) row.get("modelo"),
-                        (String) row.get("motor"),
-                        (String) row.get("nombre"),
-                        (Float) row.get("precio"),
-                        (String) row.get("urlImagen")
-                ));
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return lista;
-    }*/
 
 }

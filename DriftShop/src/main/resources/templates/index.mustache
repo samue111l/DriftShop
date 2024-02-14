@@ -1,8 +1,16 @@
-<style>
-h1{
-    color:red;
-}
-</style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
 <h1>Vista</h1>
 
 
@@ -34,34 +42,35 @@ h1{
   <input type="submit" value="Enviar">
 </form>
 
-<form action="/marcas" method="get">
-   <!--<select id="marcas" name="marcas">
-      {{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}
-    </select>-->
-   <input type="submit" value="Submit">
+<form action="/vermarcas" method="get" class="buscadorformulario">
+    Seleccionar para ver las marcas o no
+    <select id="marcas" name="marcas">
+        <option value='no ver'>No ver marcas</option>
+        <option value='ver'>Ver marcas</option>
+    </select>
+    <input type="submit" value="Enviar">
 </form>
-<ul>
-    {{#marcas}}
-        <li>{{marcaid}}</li>
-        <li>{{nombre}}</li>
-    {{/marcas}}
-</ul>
 
+<form action="/marcas" method="get" class="buscadorformulario">
+    Pulsa seleccionar para ver las marcas
+    <select id="marcas" name="marcas">
+      {{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}
+    </select>
+    <input type="submit" value="Enviar">
+</form>
 
-<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $.getJSON("", function(data) {
-            var template = "{{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}";
-            var html = Mustache.render(template, {marcas: data});
-            console.log(html);
-            $("#marcas").html(html);
+    document.addEventListener("DOMContentLoaded", function() {
+        let formularios = document.getElementsByClassName("buscadorformulario");
+        formularios.forEach(formulario => {
+            let select = formulario.querySelector("select");
+            select.addEventListener("change", () => {
+                console.log("Seleccionado");
+                formulario.submit();
+            });
         });
     });
-</script>-->
+</script>
 
-
-
-
-
+</body>
+</html>

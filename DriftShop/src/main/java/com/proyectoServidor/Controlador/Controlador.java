@@ -4,14 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.google.gson.Gson;
 import com.proyectoServidor.Database.ModeloDB;
 import com.proyectoServidor.Entities.Marca;
 import com.proyectoServidor.Entities.Producto;
 import com.proyectoServidor.Entities.Usuario;
 
-import java.io.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -49,13 +47,6 @@ public class Controlador {
             }
     }
 
-    /*@GetMapping("/listar")
-    public String mostrarVista(Model model) {
-        List<Producto> productos = modeloDB.listarProductos();
-        model.addAttribute("productos", productos);
-        return "tienda";
-    }*/
-
     @GetMapping("/tienda")
     public String tienda() {
         return "tienda";
@@ -66,19 +57,22 @@ public class Controlador {
         return "taller";
     }
 
-    /*@GetMapping("/marcas")
-    public @ResponseBody String getMarcas() {
-        List<Marca> marcas = modeloDB.seleccionarMarca();
-        System.out.println(marcas);
-        Gson gson = new Gson();
-        return gson.toJson(marcas);
-    }*/
+    @GetMapping("/vermarcas")
+    public String getMarcas(@RequestParam(name = "marcas", required = false) String verMarcas, Model model) {
+        List<Marca> marcas;
 
-    @GetMapping("/marcas")
-    public String getMarcas(Model model) {
-        System.out.println("Ha pasado por el controlador");
-        List<Marca> marcas = modeloDB.seleccionarMarca();
+        if("ver".equals(verMarcas)){
+
+        marcas = modeloDB.seleccionarMarca();
+        
+        }else{
+            marcas = new ArrayList<>();
+            marcas.add(new Marca(1, "Ejemplo random"));
+            marcas.add(new Marca(2, "Ejemplo mas random aun"));
+        }
+
         model.addAttribute("marcas", marcas);
+
         return "index";
     }
 }
