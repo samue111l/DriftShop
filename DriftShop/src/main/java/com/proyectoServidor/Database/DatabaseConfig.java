@@ -1,4 +1,4 @@
-package com.proyectoServidor;
+package com.proyectoServidor.Database;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

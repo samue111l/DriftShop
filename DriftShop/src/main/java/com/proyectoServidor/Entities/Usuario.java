@@ -1,4 +1,4 @@
-package com.proyectoServidor;
+package com.proyectoServidor.Entities;
 
 
 import jakarta.persistence.Entity;
