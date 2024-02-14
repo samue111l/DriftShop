@@ -21,32 +21,6 @@ public class ModeloDB {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Producto> listarProductos() {
-        ArrayList<Producto> lista = new ArrayList<>();
-
-        String sqlSentence = "SELECT * FROM productos";
-        System.out.println("Sentence: " + sqlSentence);
-
-        try {
-            List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlSentence);
-            for (Map<String, Object> row : rows) {
-                lista.add(new Producto(
-                        (Integer) row.get("id"),
-                        (String) row.get("marca"),
-                        (String) row.get("modelo"),
-                        (String) row.get("motor"),
-                        (String) row.get("nombre"),
-                        (Float) row.get("precio"),
-                        (String) row.get("urlImagen")
-                ));
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return lista;
-    }
-
     public Usuario registrarUSuario(String nombreRegistro, String contraseñaRegistro, String correoRegistro){
         Usuario usuarioNuevo = new Usuario();
         usuarioNuevo.setNombreUsuario(nombreRegistro);
@@ -77,24 +51,28 @@ public class ModeloDB {
     public List<Marca> seleccionarMarca() {
         ArrayList<Marca> lista = new ArrayList<>();
 
-        String sqlSentence = "SELECT DISTINCT \"Nombre\" FROM marcas";
+        String sqlSentence = "SELECT id, marca FROM marcas";
         System.out.println("Sentence: " + sqlSentence);  // verificación en consola
 
         try {
+            System.out.println("Ha entrado en el try del acceso a la bbdd");
             List<Map<String, Object>> rows = jdbcTemplate.queryForList(sqlSentence);
             for (Map<String, Object> row : rows) {
                 lista.add(new Marca(
-                        (String) row.get("Nombre")
+                        (Integer) row.get("id"),
+                        (String) row.get("marca")
                 ));
             }
+
+            for (Marca marca : lista) {
+                System.out.println("Nombre de la marca: " + marca.getNombre()+", id: "+marca.getMarcaid());
+            }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         System.out.println(lista);
         return lista;
     }
-    
-
-    
 
 }

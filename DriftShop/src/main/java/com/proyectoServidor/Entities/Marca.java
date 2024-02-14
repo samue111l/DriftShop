@@ -1,5 +1,6 @@
 package com.proyectoServidor.Entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,22 +13,15 @@ public class Marca {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Marcaid;
+    @Column(name="id", nullable = false)
+    Integer marcaid;
+
+    @Column(name="marca", nullable = false)
     String nombre;
-    public int getMarcaid() {
-        return Marcaid;
-    }
-    public void setMarcaid(int marcaid) {
-        Marcaid = marcaid;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public Marca(int marcaid, String nombre) {
-        Marcaid = marcaid;
+
+    //Constructores
+    public Marca(Integer marcaid, String nombre) {
+        this.marcaid = marcaid;
         this.nombre = nombre;
     }
     public Marca(String nombre) {
@@ -35,8 +29,19 @@ public class Marca {
     }
     public Marca() {
     }
-    
 
-    
+    //Getters y Setters
+    public Integer getMarcaid() {
+        return marcaid;
+    }
+    public void setMarcaid(Integer marcaid) {
+        this.marcaid = marcaid;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
 }
