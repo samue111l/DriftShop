@@ -11,6 +11,7 @@ import com.proyectoServidor.Entities.Marca;
 import com.proyectoServidor.Entities.Producto;
 import com.proyectoServidor.Entities.Usuario;
 
+import java.io.Console;
 import java.util.List;
 
 @Controller
@@ -48,12 +49,12 @@ public class Controlador {
             }
     }
 
-    @GetMapping("/listar")
+    /*@GetMapping("/listar")
     public String mostrarVista(Model model) {
         List<Producto> productos = modeloDB.listarProductos();
         model.addAttribute("productos", productos);
         return "tienda";
-    }
+    }*/
 
     @GetMapping("/tienda")
     public String tienda() {
@@ -65,12 +66,19 @@ public class Controlador {
         return "taller";
     }
 
-    @GetMapping("/marcas")
-public @ResponseBody String getMarcas() {
-    List<Marca> marcas = modeloDB.seleccionarMarca();
-    System.out.println(marcas);
-    Gson gson = new Gson();
-    return gson.toJson(marcas);
-}
+    /*@GetMapping("/marcas")
+    public @ResponseBody String getMarcas() {
+        List<Marca> marcas = modeloDB.seleccionarMarca();
+        System.out.println(marcas);
+        Gson gson = new Gson();
+        return gson.toJson(marcas);
+    }*/
 
+    @GetMapping("/marcas")
+    public String getMarcas(Model model) {
+        System.out.println("Ha pasado por el controlador");
+        List<Marca> marcas = modeloDB.seleccionarMarca();
+        model.addAttribute("marcas", marcas);
+        return "index";
+    }
 }

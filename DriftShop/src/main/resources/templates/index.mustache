@@ -34,13 +34,21 @@ h1{
   <input type="submit" value="Enviar">
 </form>
 
-<form>
-   <select id="marcas" name="marcas">
+<form action="/marcas" method="get">
+   <!--<select id="marcas" name="marcas">
       {{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}
-   </select>
+    </select>-->
    <input type="submit" value="Submit">
 </form>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<ul>
+    {{#marcas}}
+        <li>{{marcaid}}</li>
+        <li>{{nombre}}</li>
+    {{/marcas}}
+</ul>
+
+
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -51,7 +59,7 @@ h1{
             $("#marcas").html(html);
         });
     });
-</script>
+</script>-->
 
 
 
