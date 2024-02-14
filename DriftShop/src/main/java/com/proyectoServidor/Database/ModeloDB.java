@@ -1,8 +1,12 @@
-package com.proyectoServidor;
+package com.proyectoServidor.Database;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import com.proyectoServidor.Entities.Marca;
+import com.proyectoServidor.Entities.Producto;
+import com.proyectoServidor.Entities.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
