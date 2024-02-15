@@ -8,28 +8,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "marcas")
-public class Marca {
+@Table(name = "motores")
+public class Motor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     Long id;
 
-    @Column(name = "marca", nullable = false)
+    @Column(name = "motor", nullable = false)
     String nombre;
 
     // Constructors
-    public Marca(Long id, String nombre) {
+    public Motor(Long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public Marca(String nombre) {
+    public Motor(String nombre) {
         this.nombre = nombre;
     }
 
-    public Marca() {
+    public Motor() {
     }
 
     // Getters and Setters
@@ -37,8 +37,8 @@ public class Marca {
         return id;
     }
 
-    public void setId(Long marcaid) {
-        this.id = marcaid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -52,7 +52,7 @@ public class Marca {
     // toString method (for debugging/logging)
     @Override
     public String toString() {
-        return "Marca{" +
+        return "Motor{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 '}';

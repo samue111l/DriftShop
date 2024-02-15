@@ -42,35 +42,5 @@
   <input type="submit" value="Enviar">
 </form>
 
-<form action="/vermarcas" method="get" class="buscadorformulario">
-    Seleccionar para ver las marcas o no
-    <select id="marcas" name="marcas">
-        <option value='no ver'>No ver marcas</option>
-        <option value='ver'>Ver marcas</option>
-    </select>
-    <input type="submit" value="Enviar">
-</form>
-
-<form action="/marcas" method="get" class="buscadorformulario">
-    Pulsa seleccionar para ver las marcas
-    <select id="marcas" name="marcas">
-      {{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}
-    </select>
-    <input type="submit" value="Enviar">
-</form>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let formularios = document.getElementsByClassName("buscadorformulario");
-        formularios.forEach(formulario => {
-            let select = formulario.querySelector("select");
-            select.addEventListener("change", () => {
-                console.log("Seleccionado");
-                formulario.submit();
-            });
-        });
-    });
-</script>
-
 </body>
 </html>

@@ -1,6 +1,11 @@
-<h1>Tienda</h1>
-    <!--Buscador avanzado-->
-    <form action="/readmarcas" method="get" class="buscadorformulario">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tienda</title>
+</head>
+<body>
+    <form action="/vermarcas" method="get" class="buscadorformulario">
         Seleccionar para ver las marcas o no
         <select id="marcas" name="marcas">
             <option value='no ver'>No ver marcas</option>
@@ -12,29 +17,9 @@
     <form action="/marcas" method="get" class="buscadorformulario">
         Pulsa seleccionar para ver las marcas
         <select id="marcas" name="marcas">
-          {{#listamarcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/listamarcas}}
+          {{#marcas}}<option value='{{nombre}}'>{{nombre}}</option>{{/marcas}}
         </select>
         <input type="submit" value="Enviar">
-    </form>
-
-    <!--Motores-->
-    <form action="/añadirmotor" method="get">
-        Añade un motor
-        <input type="text" name="motor" placeholder="Motor">
-        <input type="submit" value="Enviar">
-    </form>
-
-    <form action="/readmotor" method="get">
-        <input type="submit" value="Ver motores">
-    </form>
-
-    <form action="/eliminarmotor" method="get">
-        Eliminar motor
-        <select id="motores" name="motores">
-          {{#listamotores}}<option value='{{nombre}}'>{{nombre}}</option>{{/listamotores}}
-        </select>
-
-        <input type="submit" value="Eliminar">
     </form>
     
     <script>
@@ -49,3 +34,5 @@
             });
         });
     </script>
+</body>
+</html>
