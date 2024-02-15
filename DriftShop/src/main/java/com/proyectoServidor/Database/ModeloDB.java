@@ -1,6 +1,7 @@
 package com.proyectoServidor.Database;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class ModeloDB {
         }
     }
 
-    public List<Marca> seleccionarMarca() {
+    /*public List<Marca> seleccionarMarca() {
         ArrayList<Marca> lista = new ArrayList<>();
 
         String sqlSentence = "SELECT id, marca FROM marcas";
@@ -73,6 +74,6 @@ public class ModeloDB {
         }
         System.out.println(lista);
         return lista;
-    }
+    }*/
 
 }
