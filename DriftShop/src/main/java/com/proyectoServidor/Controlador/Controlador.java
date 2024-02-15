@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.proyectoServidor.Database.MarcaService;
 import com.proyectoServidor.Database.ModeloDB;
+import com.proyectoServidor.Database.MotorService;
 import com.proyectoServidor.Entities.Marca;
+import com.proyectoServidor.Entities.Motor;
 import com.proyectoServidor.Entities.Producto;
 import com.proyectoServidor.Entities.Usuario;
 
@@ -26,6 +28,8 @@ public class Controlador {
 
     @Autowired
     public MarcaService marcaService;
+    @Autowired
+    public MotorService motorService;
 
     @GetMapping("/registrarUsuario")
     public String registrarUSuario(
@@ -53,32 +57,66 @@ public class Controlador {
         }
     }
 
-    @GetMapping("/tienda")
-    public String tienda() {
-        return "tienda";
-    }
-
     @GetMapping("/taller")
     public String taller() {
         return "taller";
     }
 
-    @GetMapping("/vermarcas")
-    public String getMarcas(@RequestParam(name = "marcas", required = false) String verMarcas, Model model) {
+    @GetMapping("/tienda")
+    public String tienda() {
+        return "tienda";
+    }
+    
+
+    @GetMapping("/readmarcas")
+    public String readMarcas(@RequestParam(name = "marcas", required = false) String verMarcas, Model model) {
         List<Marca> marcas;
 
-        if ("ver".equals(verMarcas)) {
-            System.out.println("LLega a controlador");
-            marcas = marcaService.seleccionarMarca();
+        switch (verMarcas) {
+            case "ver":
+                marcas = marcaService.getMarca();
+                break;
+            case "no ver":
+                marcas = new ArrayList<>();
+                marcas.add(new Marca((long) 1, "Ejemplo random"));
+                marcas.add(new Marca((long) 2, "Ejemplo mas random aun"));
+                break;
 
-        } else {
-            marcas = new ArrayList<>();
-            marcas.add(new Marca(1, "Ejemplo random"));
-            marcas.add(new Marca(2, "Ejemplo mas random aun"));
+            default:
+                marcas = new ArrayList<>();
+                marcas.add(new Marca("Switch default"));
+                break;
         }
 
-        model.addAttribute("marcas", marcas);
+        model.addAttribute("listamarcas", marcas);
 
-        return "index";
+        return "tienda";
+    }
+
+    @GetMapping("/añadirmotor")
+    public String añadirMotor(@RequestParam("motor") String nombreMotor) {
+        Motor nuevoMotor = new Motor();
+        nuevoMotor.setNombre(nombreMotor);
+
+        motorService.añadir(nuevoMotor);
+
+        return "tienda";
+    }
+
+    @GetMapping("/readmotor")
+    public String readMotor(Model model) {
+        List<Motor> motores = motorService.read();
+        model.addAttribute("listamotores", motores);
+        return "tienda";
+    }
+
+    @GetMapping("/eliminarmotor")
+    public String eliminarMotor(@RequestParam("motores") String nombreMotor) {
+        Motor motor = new Motor();
+        motor.setNombre(nombreMotor);
+
+        motorService.eliminar(motor);
+
+        return "tienda";
     }
 }
