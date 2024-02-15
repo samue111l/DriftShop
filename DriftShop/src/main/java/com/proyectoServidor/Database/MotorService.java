@@ -15,17 +15,19 @@ public class MotorService {
     }
 
     public Motor añadir(Motor motornuevo) {
-        System.out.println("Llega a controlador añadir motor");
         return motorRepository.save(motornuevo);
     }
 
     public List<Motor> read() {
-        System.out.println("Llega a controlador read motor");
         return motorRepository.findAll();
     }
 
-    public void eliminar(Motor motor) {
-        System.out.println("Llega a controlador eliminar motor");
-        motorRepository.delete(motor);
+    public void eliminarPorNombre(String nombreMotor) {
+        Motor motor = motorRepository.findByNombre(nombreMotor);
+        if (motor != null) {
+            motorRepository.delete(motor);
+        }else{
+            System.out.println("No hay motores");
+        }
     }
 }

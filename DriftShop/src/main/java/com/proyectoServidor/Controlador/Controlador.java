@@ -66,7 +66,6 @@ public class Controlador {
     public String tienda() {
         return "tienda";
     }
-    
 
     @GetMapping("/readmarcas")
     public String readMarcas(@RequestParam(name = "marcas", required = false) String verMarcas, Model model) {
@@ -99,7 +98,6 @@ public class Controlador {
         nuevoMotor.setNombre(nombreMotor);
 
         motorService.añadir(nuevoMotor);
-
         return "tienda";
     }
 
@@ -112,11 +110,7 @@ public class Controlador {
 
     @GetMapping("/eliminarmotor")
     public String eliminarMotor(@RequestParam("motores") String nombreMotor) {
-        Motor motor = new Motor();
-        motor.setNombre(nombreMotor);
-
-        motorService.eliminar(motor);
-
+        motorService.eliminarPorNombre(nombreMotor);
         return "tienda";
     }
 }

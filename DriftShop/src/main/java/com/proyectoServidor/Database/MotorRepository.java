@@ -7,4 +7,5 @@ import com.proyectoServidor.Entities.Motor;
 
 @Repository("motorepository")
 public interface MotorRepository extends JpaRepository<Motor, Integer> {
+    Motor findByNombre(String nombre);
 }

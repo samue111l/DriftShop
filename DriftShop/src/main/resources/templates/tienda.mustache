@@ -26,6 +26,9 @@
 
     <form action="/readmotor" method="get">
         <input type="submit" value="Ver motores">
+        <ul>
+            {{#listamotores}}<li>{{nombre}}</li>{{/listamotores}}
+        </ul>
     </form>
 
     <form action="/eliminarmotor" method="get">
